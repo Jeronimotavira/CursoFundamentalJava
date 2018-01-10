@@ -7,6 +7,7 @@ public class test01 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//version 4
+		//version 5
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Cuantos numeros aleatorios quieres?");
 		int n= sc.nextInt();
