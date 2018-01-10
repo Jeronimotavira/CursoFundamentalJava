@@ -20,7 +20,7 @@ public class test01 {
 		numeroAleatorio(randomNumero,arraydenumeros);}
 		
 		imprimirresultado(arraydenumeros);
-		
+		//comentario para hacer commit en eclipse
 		}
 	
 
