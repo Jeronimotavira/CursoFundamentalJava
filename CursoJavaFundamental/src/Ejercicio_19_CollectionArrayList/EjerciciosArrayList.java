@@ -31,8 +31,8 @@ public class EjerciciosArrayList {
 		System.out.println(palabras.get(0));
 		// el motivo es porque sigen apuntando al mismo objeto y el StringBuilder es Mutable
 		
-		String[] nombres= {"uno", "dos","tres"};
-		ArrayList<String> valores = (ArrayList<String>)Arrays.asList(nombres);
+	//	String[] nombres= {"uno", "dos","tres"};
+	//	ArrayList<String> valores = (ArrayList<String>)Arrays.asList(nombres);
 	}
 
 }
