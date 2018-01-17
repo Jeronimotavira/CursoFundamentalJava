@@ -1,0 +1,22 @@
+package modelo;
+
+public class Cuenta {
+	private double saldo;
+	public Cuenta(double saldo) {
+		this.saldo=saldo;
+		
+	}
+public void ingresar(double cant) {
+	saldo+=cant;
+	
+}
+
+public void extraer(double cant) {
+	
+	saldo-=cant;
+}
+public double getsaldo() {
+	return saldo;
+}
+	
+}
