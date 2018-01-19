@@ -4,8 +4,9 @@ Al inciar el programa, se solicita al usuario el saldo incial y el limite de la 
 Aparece el siguiente menu: 
 1 ingresar
 2 extraer
-3 movimientos y saldos
-4 salir
+3 transeferencia
+4 ultimos movimientos
+5 salir
  
  1: se solita la cantidad a ingresar y se procede al ingreso
  2: se solita la cantidad a extraer, si es inferior o igual al limite se realiza
