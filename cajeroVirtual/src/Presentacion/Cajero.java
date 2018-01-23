@@ -12,7 +12,7 @@ Aparece el siguiente menu:
  2: se solita la cantidad a extraer, si es inferior o igual al limite se realiza
  3: Muestra los movimientos realizados en la cuenta y el saldo final; 
  cada moviemto se caracteriza por un tipo (ingreso o extraccion y una cantidad)
- 
+ cambio 4
 */
 public class Cajero {
 
