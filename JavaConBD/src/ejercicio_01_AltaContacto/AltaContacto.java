@@ -17,7 +17,7 @@ public class AltaContacto {
 		// creamos el objeto Statement y enviamos la instruccion SQL 
 		Statement st=cn.createStatement();
 		st.execute(sql);
-		
+		System.out.println("contacto añadido");
 		}catch(Exception ex) {
 			System.out.println("error Io");
 			ex.printStackTrace();
@@ -31,7 +31,7 @@ public class AltaContacto {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("contacto añadido");
+		
 	}
 
 }
