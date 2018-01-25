@@ -1,14 +1,13 @@
 package modelo;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
-import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,9 +17,25 @@ import beans.Movimiento;
 
 
 public class GestionCajero {
+	String conexion;
 	String cadena="jdbc:mysql://localhost:3306/bancabd";
 	String user="root";
 	String pwd="root";
+	
+	public GestionCajero() {
+	//String conexion;
+	
+	String fichero = "D:\\manana\\conexion.txt";
+	try(	FileReader fs = new FileReader(fichero);
+			BufferedReader salida = new BufferedReader(fs);){
+		String s;
+		conexion = salida.readLine();
+	}catch(Exception e) {
+		e.printStackTrace();	
+		} 
+	
+	}
+	
 	public boolean comprobarCuenta(int numCuenta) {
 		boolean res=false;
 		//creamos la conexión contra la base de datos
