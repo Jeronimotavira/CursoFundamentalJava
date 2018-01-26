@@ -1,6 +1,5 @@
-package Presentacion.Grafica;
+package presentacion.graficos;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -13,13 +12,16 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class AñadirContacto extends JFrame {
+import modelo.GestionAgenda;
 
+
+public class JVNuevo extends JFrame {
+	private static JVNuevo obj;
 	private JPanel contentPane;
-	private JTextField textField_Nombre;
-	private JTextField textField_Telefono;
-	private JTextField textField_Email;
-	private static AñadirContacto obj;
+	private JTextField tfNombre;
+	private JTextField tfEmail;
+	private JTextField tfTelefono;
+
 	/**
 	 * Launch the application.
 	 */
@@ -27,7 +29,7 @@ public class AñadirContacto extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AñadirContacto frame = new AñadirContacto();
+					JVNuevo frame = new JVNuevo();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,53 +41,57 @@ public class AñadirContacto extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	private AñadirContacto() {
+	private JVNuevo() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 220);
+		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		textField_Nombre = new JTextField();
-		textField_Nombre.setBounds(173, 11, 238, 20);
-		contentPane.add(textField_Nombre);
-		textField_Nombre.setColumns(10);
+		JLabel lblNombre = new JLabel("Nombre:");
+		lblNombre.setBounds(49, 38, 63, 14);
+		contentPane.add(lblNombre);
 		
-		JLabel lblNewLabel = new JLabel("Nombre");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel.setBounds(73, 13, 70, 14);
-		contentPane.add(lblNewLabel);
+		tfNombre = new JTextField();
+		tfNombre.setBounds(141, 35, 86, 20);
+		contentPane.add(tfNombre);
+		tfNombre.setColumns(10);
 		
-		JLabel Telefono = new JLabel("Telefono");
-		Telefono.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		Telefono.setBounds(73, 68, 70, 14);
-		contentPane.add(Telefono);
+		JLabel lblEmail = new JLabel("Email:");
+		lblEmail.setBounds(49, 92, 63, 14);
+		contentPane.add(lblEmail);
 		
-		JLabel Email = new JLabel("Email");
-		Email.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		Email.setBounds(73, 40, 70, 14);
-		contentPane.add(Email);
+		tfEmail = new JTextField();
+		tfEmail.setColumns(10);
+		tfEmail.setBounds(141, 89, 86, 20);
+		contentPane.add(tfEmail);
 		
-		textField_Telefono = new JTextField();
-		textField_Telefono.setColumns(10);
-		textField_Telefono.setBounds(173, 68, 238, 20);
-		contentPane.add(textField_Telefono);
+		JLabel lblTelfono = new JLabel("Tel\u00E9fono:");
+		lblTelfono.setBounds(49, 150, 63, 14);
+		contentPane.add(lblTelfono);
 		
-		textField_Email = new JTextField();
-		textField_Email.setColumns(10);
-		textField_Email.setBounds(173, 42, 238, 20);
-		contentPane.add(textField_Email);
+		tfTelefono = new JTextField();
+		tfTelefono.setColumns(10);
+		tfTelefono.setBounds(141, 147, 86, 20);
+		contentPane.add(tfTelefono);
 		
-		JButton btnAñadir = new JButton("A\u00F1adir");
-		btnAñadir.addActionListener(new ActionListener() {
+		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GestionAgenda agenda=new GestionAgenda();
+				agenda.alta(tfNombre.getText(), 
+						tfEmail.getText(), 
+						Integer.parseInt(tfTelefono.getText()));
+				
+				JVNuevo.this.dispose();
 			}
 		});
-		btnAñadir.setBounds(311, 124, 89, 23);
-		contentPane.add(btnAñadir);
+		btnGuardar.setBounds(150, 202, 89, 23);
+		contentPane.add(btnGuardar);
 		
-		WindowListener lstVentana = new WindowListener() {
+		//escuchador de eventos de la ventana
+		WindowListener lstVentana=new WindowListener() {
 			
 			@Override
 			public void windowOpened(WindowEvent arg0) {
@@ -113,14 +119,14 @@ public class AñadirContacto extends JFrame {
 			
 			@Override
 			public void windowClosing(WindowEvent arg0) {
-				// TODO Auto-generated method stub
+				
 				
 			}
 			
 			@Override
 			public void windowClosed(WindowEvent arg0) {
+				// TODO Auto-generated method stub
 				obj=null;
-				
 			}
 			
 			@Override
@@ -130,17 +136,15 @@ public class AñadirContacto extends JFrame {
 			}
 		};
 		
-		this.setVisible(true);
 		this.addWindowListener(lstVentana);
+		
+		this.setVisible(true);
 	}
 	
-	public static AñadirContacto crearventana() {
+	public static JVNuevo getVentana() {
 		if(obj==null) {
-			obj= new AñadirContacto();
+			obj=new JVNuevo();
 		}
-		
 		return obj;
 	}
-	
 }
-
