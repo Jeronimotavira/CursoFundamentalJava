@@ -28,7 +28,7 @@ public class GestionCajero {
 	String fichero = "D:\\manana\\conexion.txt";
 	try(	FileReader fs = new FileReader(fichero);
 			BufferedReader salida = new BufferedReader(fs);){
-		String s;
+		//String s;
 		conexion = salida.readLine();
 	}catch(Exception e) {
 		e.printStackTrace();	

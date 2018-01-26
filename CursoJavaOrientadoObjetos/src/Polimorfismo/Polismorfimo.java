@@ -20,11 +20,14 @@ public class Polismorfimo {
 		mostrar(new Circulo("amarillo",5));
 		mostrar(new triangulo("rojo",3,7));
 		
+		Geometria f;
+		f = new Circulo("verde",3);
+		System.out.println(f.getColor());
+	}
+	private static void mostrar(Geometria d) {
+		System.out.println("color "+d.getColor());
+		System.out.println("superficie "+d.superficie());
 		
 	}
-	private static void mostrar(Geometria f) {
-		System.out.println("color"+f.getColor());
-		  System.out.println("superficie"+f.superficie());
-	}
-
+	
 }
