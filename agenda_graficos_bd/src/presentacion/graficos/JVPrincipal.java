@@ -1,15 +1,20 @@
 package presentacion.graficos;
 
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.ListCellRenderer;
 import javax.swing.border.EmptyBorder;
 
 import beans.Contacto;
@@ -103,6 +108,42 @@ public class JVPrincipal extends JFrame {
 		
 		JComboBox cbContactos = new JComboBox();
 		cbContactos.setBounds(278, 48, 120, 22);
+		// para cambiar en la capa presentacion el estilo de un JComboBox. 
+		cbContactos.setRenderer(new ListCellRenderer<Contacto>(){
+				
+		@Override
+		public Component getListCellRendererComponent(JList<? extends Contacto> arg0, Contacto arg1, int arg2,
+				boolean arg3, boolean arg4) {
+			JLabel lb= new JLabel();
+			if(arg1!=null) {
+			lb.setText(arg1.getEmail() );
+			}
+			return lb;
+		}
+		
+		});	
+		
+		
+		//programar evento de cargar la lista cuando se haga foco. 
+		cbContactos.addFocusListener(new FocusListener() {
+			
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				// y aqui lo cargamos todo. 
+				//carga del combo
+				GestionAgenda agenda=new GestionAgenda();
+				AdaptadorCombo<Contacto> adp=new AdaptadorCombo<>(agenda.recuperarTodos());
+				cbContactos.setModel(adp);
+				
+				
+			}
+		});
 		contentPane.add(cbContactos);
 		
 		JButton btnEliminar = new JButton("Eliminar");
@@ -116,10 +157,7 @@ public class JVPrincipal extends JFrame {
 		btnEliminar.setBounds(281, 11, 89, 23);
 		contentPane.add(btnEliminar);
 		
-		//carga del combo
-		GestionAgenda agenda=new GestionAgenda();
-		AdaptadorCombo<Contacto> adp=new AdaptadorCombo<>(agenda.recuperarTodos());
-		cbContactos.setModel(adp);
+		
 		
 	}
 }
