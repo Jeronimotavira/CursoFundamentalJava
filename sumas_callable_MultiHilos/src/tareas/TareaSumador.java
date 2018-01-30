@@ -1,10 +1,11 @@
 package tareas;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.locks.Lock;
 
 public class TareaSumador implements Callable<Long> {
  private int n;
- 
+ Lock lc;
 	public TareaSumador(int n) {
 	
 	this.n = n;
