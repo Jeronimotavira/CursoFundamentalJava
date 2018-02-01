@@ -79,14 +79,16 @@ public class JVNuevo extends JFrame {
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GestionAgenda agenda=new GestionAgenda();
-				agenda.alta(tfNombre.getText(), 
-						tfEmail.getText(), 
-						Integer.parseInt(tfTelefono.getText()));
 				
+				
+				GestionAgenda agenda=new GestionAgenda();
+				int unidades = Integer.parseInt(tfTelefono.getText());
+				agenda.alta(tfEmail.getText(),unidades);
+			
+			
 				JVNuevo.this.dispose();
-			}
-		});
+		
+			}}
 		btnGuardar.setBounds(150, 202, 89, 23);
 		contentPane.add(btnGuardar);
 		

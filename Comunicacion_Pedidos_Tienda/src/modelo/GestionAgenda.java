@@ -10,17 +10,16 @@ import java.net.Socket;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
-import beans.Contacto;
+import beans.Pedido;
 
 public class GestionAgenda {
 	private LocalDateTime fecha;
 	
-		public boolean alta(String produc, int unidades ) {
+	
+		public JSONObject alta(String produc, int unidades ) {
 			
 			
 			
@@ -30,15 +29,16 @@ public class GestionAgenda {
 			ob.put("cliente", "ipcliente");
 			ob.put("fecha", fecha.now().toString());
 			
-			return true;
+			
+			return ob;
 			
 
 		}
 		
-		public List<Contacto> buscarContactos(String cad){
+		public List<Pedido> buscarContactos(String cad){
 			String ip="10.1.1.100";
 			int puerto=9000;
-			List<Contacto> contactos=null;
+			List<Pedido> pedidos=null;
 			try {
 				Socket sc=new Socket(ip,puerto);
 				InputStream is=sc.getInputStream();
@@ -47,16 +47,16 @@ public class GestionAgenda {
 				try(PrintStream salida=new PrintStream(os);BufferedReader bf=new BufferedReader(new InputStreamReader(is));){
 					salida.println(cad);
 					String respJSON=bf.readLine();
-					contactos=transformarEnLista(respJSON);
+					pedidos=transformarEnLista(respJSON);
 				}
 			}
 			catch(IOException ex) {
 				ex.printStackTrace();
 			}
-			return contactos;
+			return pedidos;
 		}
-		private List<Contacto> transformarEnLista(String json){
-			ArrayList<Contacto> contactos=new ArrayList<>();
+		private List<Pedido> transformarEnLista(String json){
+			ArrayList<Pedido> pedidos=new ArrayList<>();
 			JSONParser parser=new JSONParser();
 			try {
 				JSONArray array=(JSONArray)parser.parse(json);
@@ -65,10 +65,10 @@ public class GestionAgenda {
 				//for(Object ob:array) {
 				array.forEach(ob->{
 					JSONObject data=(JSONObject)ob;
-					Contacto c=new Contacto(data.get("nombre").toString(), 
-							data.get("email").toString(), 
-							Integer.parseInt(data.get("telefono").toString()));
-					contactos.add(c);
+					Pedido c=new Pedido(data.get("producto").toString(), 
+							data.get("unidades").toString(), 
+							Integer.parseInt(data.get("ipcliente").toString()));
+					pedidos.add(c);
 				});
 					
 				//}
@@ -77,7 +77,8 @@ public class GestionAgenda {
 				ex.printStackTrace();
 			}
 			
-			return contactos;
+			return pedidos;
+			
 		}
 		
 		

@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
-import beans.Contacto;
+import beans.Pedido;
 import modelo.GestionAgenda;
 import presentacion.adaptadores.AdaptadorTabla;
 import java.awt.event.ActionListener;

@@ -1,6 +1,7 @@
-package beans;
+package javaBeans;
 
 public class Contacto {
+	
 	private String nombre;
 	private String email;
 	private int telefono;
@@ -32,4 +33,5 @@ public class Contacto {
 	public String toString() {
 		return nombre;
 	}
+
 }
